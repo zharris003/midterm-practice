@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt 
+import requests as rq
 
 def main(): 
     # 1.1
@@ -55,7 +56,7 @@ def main():
 
     fig, ax = plt.subplots()
     ax.hist(seq, bins)
-    ax.savefig("histplot.png")
+    fig.savefig("histplot.png")
 
 
 if __name__ == "__main__":
