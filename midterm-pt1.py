@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt 
 
-def main: 
+def main(): 
     # 1.1
     def next_x(a,c,m,prev_x):
         next_num = (a * prev_x + c) % m
@@ -12,12 +12,12 @@ def main:
     def random_sequence(a,c,m,x0,n):
         nums = [x0]
         for i in range(n-1):
-            next_num = next_x(a,c,m,x0)
+            next_num = next_x(a,c,m,nums[-1])
             nums.append(next_num)
         return nums
 
     a,c,m,x0,n = 106,1283,6075,42,10
-    assert(random_sequence(a,c,m,x0,n) == [42, 5735, 1693, 4566, 5354, 3832, 450, 383, 5431, 5919]
+    assert(random_sequence(a,c,m,x0,n) == [42, 5735, 1693, 4566, 5354, 3832, 450, 383, 5431, 5919])
 
     #1.3
     class RandomIntGenerator:
@@ -27,10 +27,10 @@ def main:
             self.a = a
             self.c = c
             self.m = m
-            self.x0 = x0
+            self.x = x0
 
         def next(self):
-            self.x =  next_x(self.a,self.c,self.m,self.x0)
+            self.x =  next_x(self.a,self.c,self.m,self.x)
             return self.num_min + self.x % (self.num_max+1-self.num_min)
             
 
@@ -55,7 +55,10 @@ def main:
 
     fig, ax = plt.subplots()
     ax.hist(seq, bins)
-    plt.show()
+    ax.savefig("histplot.png")
 
+
+if __name__ == "__main__":
+    main()
 
 
